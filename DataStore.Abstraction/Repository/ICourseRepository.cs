@@ -4,8 +4,8 @@ namespace DataStore.Abstraction.Repository
 {
     public interface ICourseRepository
     {
-        Task<IEnumerable<ICourseDTO>> GetAll();
-        Task<ICourseDTO> GetById(int id);
+        Task<IEnumerable<ICourseDTO>> GetAllAsync();
+        Task<ICourseDTO?> GetByIdAsync(int id);
 
     }
 }

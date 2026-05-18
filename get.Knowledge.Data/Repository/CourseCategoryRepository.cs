@@ -20,9 +20,8 @@ namespace DataStore.Implementation.Repository
             return result;
         }
 
-        public async Task<ICourseCategory> GetByIdAsync(int id)
+        public async Task<ICourseCategory?> GetByIdAsync(int id)
         {
-
             var sql = "SELECT * FROM CourseCategory WHERE CategoryId = @Id;";
             var result = await _dbConnection.QueryFirstOrDefaultAsync<CourseCategory>(sql, new { Id = id });
 

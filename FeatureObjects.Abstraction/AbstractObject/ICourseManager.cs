@@ -4,7 +4,7 @@ namespace FeatureObjects.Abstraction.AbstractObject
 {
     public interface ICourseManager
     {
-        Task<IEnumerable<ICourseDTO>> GetAll();
-        Task<ICourseDTO> GetById(int id);
+        Task<IEnumerable<ICourseDTO>> GetAllAsync();
+        Task<ICourseDTO> GetByIdAsync(int id);
     }
 }

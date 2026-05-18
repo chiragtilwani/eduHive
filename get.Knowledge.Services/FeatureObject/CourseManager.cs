@@ -15,14 +15,14 @@ namespace FeatureObjects.Implementaion.FeatureObject
         {
             _courseRepository = courseRepository;
         }
-        public async Task<IEnumerable<ICourseDTO>> GetAll()
+        public async Task<IEnumerable<ICourseDTO>> GetAllAsync()
         {
-            return await _courseRepository.GetAll();
+            return await _courseRepository.GetAllAsync();
         }
 
-        public async Task<ICourseDTO> GetById(int id)
+        public async Task<ICourseDTO> GetByIdAsync(int id)
         {
-            var result = await _courseRepository.GetById(id);
+            var result = await _courseRepository.GetByIdAsync(id);
             if (result == null)
             {
                 string errorMessage = String.Format(CommonErrorMessages.NotFound, "Course", id);

@@ -1,18 +1,27 @@
-﻿namespace DataStore.Implementation.DTOs
+﻿using DataStore.Abstraction.Models;
+using System.ComponentModel.DataAnnotations;
+
+namespace DataStore.Implementation.DTOs
 {
     public class CourseDTO : ICourseDTO
     {
         public int CourseId { get; set; }
-        public string Title { get; set; }
-        public string? Description { get; set; }
+        [Required]
+        public required string Title { get; set; }
+        public string? Description { get; set; } = String.Empty;
         public decimal Price { get; set; }
-        public string CourseType { get; set; }
+        public required string CourseType { get; set; } = "Online";
         public int SeatsAvailable { get; set; }
         public decimal Duration { get; set; }
-        public string InstructorDisplayName { get; set; }
+        [Required]
+        public required string InstructorDisplayName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Category { get; set; }
-        public IUserRatingForCourseDTO UserRating { get; set; }
+        [Required]
+        public required string Category { get; set; }
+        public decimal AverageRating { get; set; }
+        public int TotalRating { get; set; }
+        public List<IReview> Reviews { get; set; } = new List<IReview>();
+        public List<ISessionDetails> Sessions { get; set; } = new List<ISessionDetails>();
     }
 }
