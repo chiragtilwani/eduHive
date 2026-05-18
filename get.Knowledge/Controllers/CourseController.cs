@@ -17,14 +17,14 @@ namespace get.Knowledge.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCourseById(int id)
         {
-            var result = await _courseManager.GetById(id);
+            var result = await _courseManager.GetByIdAsync(id);
             return Ok(result);
         }
 
         [HttpGet("all")]
         public async Task<IActionResult> GetAllCourses()
         {
-            var result = await _courseManager.GetAll();
+            var result = await _courseManager.GetAllAsync();
             return Ok(result);
         }
     }

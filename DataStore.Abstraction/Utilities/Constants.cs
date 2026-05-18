@@ -6,5 +6,10 @@
         {
             public const string NotFound = "{0} Not found with Id: {1}.";
         }
+
+        public static class StoredProcedures
+        {
+            public const string GetCourseById = "sp_GetCourseByID";
+        }
     }
 }

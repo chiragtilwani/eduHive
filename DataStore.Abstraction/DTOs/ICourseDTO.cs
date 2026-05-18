@@ -1,4 +1,6 @@
-﻿namespace DataStore.Implementation.DTOs
+﻿using DataStore.Abstraction.Models;
+
+namespace DataStore.Implementation.DTOs
 {
     public interface ICourseDTO
     {
@@ -13,6 +15,9 @@
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
         string Category { get; set; }
-        IUserRatingForCourseDTO UserRating { get; set; }
+        decimal AverageRating { get; set; }
+        int TotalRating { get; set; }
+        List<IReview> Reviews { get; set; }
+        List<ISessionDetails> Sessions { get; set; }
     }
 }
