@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "get.Knowledge.API", "get.Kn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStore.Implementation", "get.Knowledge.Data\DataStore.Implementation.csproj", "{6B42F609-6582-40A9-B90F-126F2A4D41D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureObjects.Implementaion", "get.Knowledge.Services\FeatureObjects.Implementaion.csproj", "{5BC536FC-A928-4938-9F86-BADCB76D76D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureObjects.Implementation", "get.Knowledge.Services\FeatureObjects.Implementation.csproj", "{5BC536FC-A928-4938-9F86-BADCB76D76D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppLayer", "AppLayer", "{2D83BDD8-8A2D-4751-BF14-B0F2DAC946AB}"
 EndProject

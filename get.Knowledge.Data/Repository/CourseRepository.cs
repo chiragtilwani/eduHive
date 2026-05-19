@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using DataStore.Abstraction.Repository;
 using DataStore.Implementation.DTOs;
-using DataStore.Implementation.Models;
 using System.Data;
 using static DataStore.Abstraction.Utilities.Constants;
 
@@ -33,7 +32,7 @@ namespace DataStore.Implementation.Repository
         private async Task<Dictionary<int, CourseDTO>> GetAllCoursesDictionaryAsync(int id = 0)
         {
             var courseDictionary = new Dictionary<int, CourseDTO>();
-            var result = await _dbConnection.QueryAsync<CourseDTO, Review, SessionDetails, CourseDTO>(StoredProcedures.GetAllCourses, (course, review, session) =>
+            var result = await _dbConnection.QueryAsync<CourseDTO, ReviewDTO, SessionDetailsDTO, CourseDTO>(StoredProcedures.GetAllCourses, (course, review, session) =>
             {
                 // As Query is having one-to-many relationship so there would be definitely redundant data to avoid returning duplicate courses courseDictionary is being used here
                 if (!courseDictionary.TryGetValue(course.CourseId, out var currentCourse))

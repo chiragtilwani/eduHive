@@ -1,4 +1,4 @@
-﻿using DataStore.Abstraction.Models;
+﻿using DataStore.Abstraction.DTOs;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataStore.Implementation.DTOs
@@ -21,7 +21,7 @@ namespace DataStore.Implementation.DTOs
         public required string Category { get; set; }
         public decimal AverageRating { get; set; }
         public int TotalRating { get; set; }
-        public List<IReview> Reviews { get; set; } = new List<IReview>();
-        public List<ISessionDetails> Sessions { get; set; } = new List<ISessionDetails>();
+        public List<IReviewDTO> Reviews { get; set; } = new List<IReviewDTO>();
+        public List<ISessionDetailsDTO> Sessions { get; set; } = new List<ISessionDetailsDTO>();
     }
 }
