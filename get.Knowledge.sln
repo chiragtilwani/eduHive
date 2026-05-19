@@ -22,8 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureObjects.Abstraction", "FeatureObjects.Abstraction\FeatureObjects.Abstraction.csproj", "{ED183A54-1DD0-4B2C-9ABE-C34D3F3A2938}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seed Data", "Seed Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seed Data", "Seed Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		OnlineCourseEnrollmentDB.sql = OnlineCourseEnrollmentDB.sql
 		StoredProcedures.sql = StoredProcedures.sql
