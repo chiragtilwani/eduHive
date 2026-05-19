@@ -10,6 +10,7 @@
         public static class StoredProcedures
         {
             public const string GetCourseById = "sp_GetCourseByID";
+            public const string GetAllCourses = "sp_GetAllCourses";
         }
     }
 }

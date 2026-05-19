@@ -16,41 +16,30 @@ namespace DataStore.Implementation.Repository
             _dbConnection = dbConnection;
         }
         public async Task<IEnumerable<ICourseDTO>> GetAllAsync()
-
         {
-            const string sql = @"
-                                SELECT c.CourseId, c.Title, c.Description,
-                                    c.Price, c.CourseType, c.SeatsAvailable,
-                                    c.Duration, u.DisplayName AS InstructorDisplayName,
-                                    c.StartDate, c.EndDate, cc.CategoryName AS Category,
-                                    ISNULL(AVG(r.Rating),0) AS AverageRating, COUNT(DISTINCT r.ReviewId) AS TotalRatings
-                                FROM Course c
-                                LEFT JOIN Instructor i ON c.InstructorId = i.InstructorId
-                                LEFT JOIN UserProfile u ON i.UserId = u.UserId
-                                LEFT JOIN CourseCategory cc ON c.CategoryId = cc.CategoryId
-                                LEFT JOIN Review r ON c.CourseId = r.CourseId
-                                GROUP BY c.CourseId, c.Title, c.Description, c.Price,
-                                         c.CourseType, c.SeatsAvailable, c.Duration, u.DisplayName,
-                                         c.StartDate, c.EndDate, cc.CategoryName;";
+            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync();
 
-            var result = await _dbConnection.QueryAsync<CourseDTO, UserRatingForCourseDTO, CourseDTO>(sql, (course, rating) =>
-            {
-                //course. = rating;
-                return course;
-            }, splitOn: "AverageRating");
-
-            return result;
+            return courseDictionary.Values;
         }
 
         public async Task<ICourseDTO?> GetByIdAsync(int id)
         {
+            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync();
+
+            return courseDictionary.Values.FirstOrDefault();
+        }
+
+        #region Private Methods
+        private async Task<Dictionary<int, CourseDTO>> GetAllCoursesDictionaryAsync(int id = 0)
+        {
             var courseDictionary = new Dictionary<int, CourseDTO>();
-            var result = await _dbConnection.QueryAsync<CourseDTO, Review, SessionDetails, CourseDTO>(StoredProcedures.GetCourseById, (course, review, session) =>
+            var result = await _dbConnection.QueryAsync<CourseDTO, Review, SessionDetails, CourseDTO>(StoredProcedures.GetAllCourses, (course, review, session) =>
             {
+                // As Query is having one-to-many relationship so there would be definitely redundant data to avoid returning duplicate courses courseDictionary is being used here
                 if (!courseDictionary.TryGetValue(course.CourseId, out var currentCourse))
                 {
                     currentCourse = course;
-                    courseDictionary.Add(course.CourseId, currentCourse);
+                    courseDictionary.Add(course.CourseId, course);
                 }
 
                 // Add review if it exists and is not already added
@@ -66,9 +55,9 @@ namespace DataStore.Implementation.Repository
                 }
 
                 return currentCourse;
-            }, new { Id = id }, splitOn: "ReviewId,SessionId", commandType: CommandType.StoredProcedure);
-
-            return result.FirstOrDefault();
+            }, id != 0 ? new { Id = id } : null, splitOn: "ReviewId,SessionId", commandType: CommandType.StoredProcedure);
+            return courseDictionary;
         }
+        #endregion
     }
 }
