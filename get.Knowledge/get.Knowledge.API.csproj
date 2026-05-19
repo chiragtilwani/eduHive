@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\get.Knowledge.Services\FeatureObjects.Implementaion.csproj" />
+    <ProjectReference Include="..\get.Knowledge.Services\FeatureObjects.Implementation.csproj" />
   </ItemGroup>
 
 </Project>

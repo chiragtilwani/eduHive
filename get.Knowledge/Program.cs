@@ -17,7 +17,7 @@ namespace get.Knowledge
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<IDbConnection>(sp =>
+            builder.Services.AddTransient<IDbConnection>(sp =>
                 new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
             builder.Services.AddRepositories();

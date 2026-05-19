@@ -1,4 +1,4 @@
-﻿using DataStore.Abstraction.Models;
+﻿using DataStore.Abstraction.DTOs;
 
 namespace DataStore.Implementation.DTOs
 {
@@ -17,7 +17,7 @@ namespace DataStore.Implementation.DTOs
         string Category { get; set; }
         decimal AverageRating { get; set; }
         int TotalRating { get; set; }
-        List<IReview> Reviews { get; set; }
-        List<ISessionDetails> Sessions { get; set; }
+        List<IReviewDTO> Reviews { get; set; }
+        List<ISessionDetailsDTO> Sessions { get; set; }
     }
 }
