@@ -1,10 +1,11 @@
-﻿using DataStore.Implementation.DTOs;
+﻿using DataStore.Abstraction.Enums;
+using DataStore.Implementation.DTOs;
 
 namespace DataStore.Abstraction.Repository
 {
     public interface ICourseRepository
     {
-        Task<IEnumerable<ICourseDTO>> GetAllAsync();
+        Task<IEnumerable<ICourseDTO>> GetAllAsync(CourseCategoryEnum? categoryId = null);
         Task<ICourseDTO?> GetByIdAsync(int id);
 
     }

@@ -1,4 +1,5 @@
-﻿using DataStore.Abstraction.Repository;
+﻿using DataStore.Abstraction.Enums;
+using DataStore.Abstraction.Repository;
 using DataStore.Implementation.DTOs;
 using FeatureObjects.Abstraction.AbstractObject;
 using System.Net;
@@ -15,9 +16,9 @@ namespace FeatureObjects.Implementaion.FeatureObject
         {
             _courseRepository = courseRepository;
         }
-        public async Task<IEnumerable<ICourseDTO>> GetAllAsync()
+        public async Task<IEnumerable<ICourseDTO>> GetAllAsync(CourseCategoryEnum? categoryId = null)
         {
-            return await _courseRepository.GetAllAsync();
+            return await _courseRepository.GetAllAsync(categoryId);
         }
 
         public async Task<ICourseDTO> GetByIdAsync(int id)
@@ -26,7 +27,7 @@ namespace FeatureObjects.Implementaion.FeatureObject
             if (result == null)
             {
                 string errorMessage = String.Format(CommonErrorMessages.NotFound, "Course", id);
-                throw new APIException(errorMessage,HttpStatusCode.NotFound);
+                throw new APIException(errorMessage, HttpStatusCode.NotFound);
             }
 
             return result;
