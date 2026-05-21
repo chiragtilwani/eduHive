@@ -424,8 +424,6 @@ VideoUrl = 'https://www.youtube.com/watch?v=fqI0ToX1nDQ'
 where CourseId<>1
 
 
----- These below designed after Episode 15 ------
-
   CREATE TABLE VideoRequest (
     VideoRequestId INT IDENTITY(1,1),    
     UserId INT NOT NULL, 
