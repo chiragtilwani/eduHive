@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DataStore.Abstraction.Enums;
 using DataStore.Abstraction.Repository;
 using DataStore.Implementation.DTOs;
 using System.Data;
@@ -14,24 +15,25 @@ namespace DataStore.Implementation.Repository
         {
             _dbConnection = dbConnection;
         }
-        public async Task<IEnumerable<ICourseDTO>> GetAllAsync()
+        public async Task<IEnumerable<ICourseDTO>> GetAllAsync(CourseCategoryEnum? categoryId = null)
         {
-            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync();
+            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync(categoryId: categoryId);
 
             return courseDictionary.Values;
         }
 
         public async Task<ICourseDTO?> GetByIdAsync(int id)
         {
-            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync();
+            Dictionary<int, CourseDTO> courseDictionary = await GetAllCoursesDictionaryAsync(id);
 
             return courseDictionary.Values.FirstOrDefault();
         }
 
         #region Private Methods
-        private async Task<Dictionary<int, CourseDTO>> GetAllCoursesDictionaryAsync(int id = 0)
+        private async Task<Dictionary<int, CourseDTO>> GetAllCoursesDictionaryAsync(int courseId = 0, CourseCategoryEnum? categoryId = null)
         {
             var courseDictionary = new Dictionary<int, CourseDTO>();
+
             var result = await _dbConnection.QueryAsync<CourseDTO, ReviewDTO, SessionDetailsDTO, CourseDTO>(StoredProcedures.GetAllCourses, (course, review, session) =>
             {
                 // As Query is having one-to-many relationship so there would be definitely redundant data to avoid returning duplicate courses courseDictionary is being used here
@@ -54,7 +56,8 @@ namespace DataStore.Implementation.Repository
                 }
 
                 return currentCourse;
-            }, id != 0 ? new { Id = id } : null, splitOn: "ReviewId,SessionId", commandType: CommandType.StoredProcedure);
+            }, courseId != 0 || categoryId is not null ? new { courseId, categoryId } : null, splitOn: "ReviewId,SessionId", commandType: CommandType.StoredProcedure);
+
             return courseDictionary;
         }
         #endregion

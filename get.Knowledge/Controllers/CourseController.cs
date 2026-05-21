@@ -1,4 +1,5 @@
-﻿using FeatureObjects.Abstraction.AbstractObject;
+﻿using DataStore.Abstraction.Enums;
+using FeatureObjects.Abstraction.AbstractObject;
 using Microsoft.AspNetCore.Mvc;
 
 namespace get.Knowledge.API.Controllers
@@ -22,9 +23,9 @@ namespace get.Knowledge.API.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAllCourses()
+        public async Task<IActionResult> GetAllCourses(CourseCategoryEnum? categoryId = null)
         {
-            var result = await _courseManager.GetAllAsync();
+            var result = await _courseManager.GetAllAsync(categoryId);
             return Ok(result);
         }
     }

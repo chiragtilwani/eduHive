@@ -22,10 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureObjects.Abstraction", "FeatureObjects.Abstraction\FeatureObjects.Abstraction.csproj", "{ED183A54-1DD0-4B2C-9ABE-C34D3F3A2938}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seed Data", "Seed Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-	ProjectSection(SolutionItems) = preProject
-		OnlineCourseEnrollmentDB.sql = OnlineCourseEnrollmentDB.sql
-		StoredProcedures.sql = StoredProcedures.sql
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,7 +56,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1EC999AC-23B8-457D-AB92-D4185D1E6B7F} = {2D83BDD8-8A2D-4751-BF14-B0F2DAC946AB}
 		{6B42F609-6582-40A9-B90F-126F2A4D41D1} = {625AD215-4B4E-4069-929A-3C97BD21340F}
-		{5BC536FC-A928-4938-9F86-BADCB76D76D4} = {E19E7A01-3422-4517-8882-79AF9BD45701}
 		{625AD215-4B4E-4069-929A-3C97BD21340F} = {09103B07-2F33-4CCB-81E4-3457B53DAC88}
 		{E19E7A01-3422-4517-8882-79AF9BD45701} = {09103B07-2F33-4CCB-81E4-3457B53DAC88}
 		{5842EA77-EC52-44EB-BDEF-1A2AAA07D13D} = {625AD215-4B4E-4069-929A-3C97BD21340F}

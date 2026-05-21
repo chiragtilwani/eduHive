@@ -28,11 +28,11 @@ namespace get.Knowledge
 
             app.UseExceptionHandlingMiddleware();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //// Configure the HTTP request pipeline.
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();  // As this API project DeveloperExceptionPage makes no sense
+            //}
             app.UseSwagger();
             app.UseSwaggerUI();
 
